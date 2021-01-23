@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manipulator_type: 1
+  total: 
+  time: 2018-12-28 18:09:40
+
+two:
+  manipulator_type: 1
+  total: 
+  time: 2018-12-28 18:09:40

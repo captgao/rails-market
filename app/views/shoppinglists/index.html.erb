@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shoppinglists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Total</th>
+      <th>Time</th>
+      <% if current_user.role == 'admin' %>
+		<th>User</th>
+		<th>Role</th>
+	<% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shoppinglists.each do |shoppinglist| %>
+      <tr>
+        <td><%= shoppinglist.id %></td>
+        <td><%= shoppinglist.total_price(shoppinglist) %></td>
+        <td><%= shoppinglist.updated_at %></td>
+	<% if current_user.role == 'admin' %>
+		<td><%= shoppinglist.user_id %></td>
+		<td><%= shoppinglist.user.role == 'admin' ? 'admin' : 'user' %></td>
+	<% end %>
+        <td><%= link_to 'Show', shoppinglist %></td>
+        <td><%= link_to 'Edit', edit_shoppinglist_path(shoppinglist) %></td>
+        <td><%= link_to 'Destroy', shoppinglist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shoppinglist', new_shoppinglist_path %>
+<%= link_to 'Products', products_path %>

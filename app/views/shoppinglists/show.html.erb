@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <strong>Total:</strong>
+      <%= @shoppinglist.total_price(@shoppinglist) %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @shoppinglist.updated_at %>
+</p>
+<p>
+  <b>Items of this Shopping list:</b>
+<div class="items" >
+  <% @shoppinglist.items.each do |item| %>
+    <div class="item" >
+       <strong>Price</strong>
+		<%= Product.find(item.product_id).price * item.quantity %>
+      <strong>Product Name</strong>
+      <%=  link_to Product.find(item.product_id).p_name, product_path(Product.find(item.product_id)) %>,  Updated 
+      <%= time_ago_in_words item.created_at %> ago. | 
+      <%= link_to 'Edit', edit_item_path(item) %>
+      <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+      
+    </div>
+  <% end %>
+</div>
+</p>
+<%= link_to 'New Item', new_item_path(:shoppinglist_id => @shoppinglist.id) %>
+<%= link_to 'Back', shoppinglists_path %>

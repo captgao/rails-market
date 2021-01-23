@@ -1,0 +1,14 @@
+<%= form_with(model: shoppinglist, local: true) do |form| %>
+  <% if shoppinglist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shoppinglist.errors.count, "error") %> prohibited this shoppinglist from being saved:</h2>
+
+      <ul>
+      <% shoppinglist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.submit %>
+<% end %>
